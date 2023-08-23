@@ -84,7 +84,7 @@ namespace TicTacToeClientSide1225
                 //b8.IsEnabled = IsEnable;
                 //b9.IsEnabled = IsEnable;
             }
-            else
+            else if (text != "salam")
             {
                 IntegrateToView(text);
             }
@@ -125,7 +125,7 @@ namespace TicTacToeClientSide1225
             {
                 try
                 {
-                    ClientSocket.Connect(IPAddress.Parse("10.1.18.3"), port);
+                    ClientSocket.Connect(IPAddress.Parse("10.2.27.3"), port);
                 }
                 catch (Exception)
                 {
@@ -137,7 +137,7 @@ namespace TicTacToeClientSide1225
 
 
             var buffer = new byte[2048];
-            int received = ClientSocket.Receive(buffer, SocketFlags.None);
+            int received = ClientSocket.Receive(buffer);
             if (received == 0) return;
 
             var data = new byte[received];
@@ -146,18 +146,14 @@ namespace TicTacToeClientSide1225
 
             MessageBox.Show(text);
 
-            if (text == "O")
+            if (text == "salam")
             {
                 MessageBox.Show("Start game");
-
-                this.Title = "Player : " + text;
-
-                this.player.Text = this.Title;
             }
 
+            this.Title = "Player : " + text;
 
-
-
+            this.player.Text = this.Title;
 
             //try
             //{
