@@ -46,6 +46,7 @@ namespace TicTacToeClientSide1225
             });
         }
 
+        public bool IsEnable { get; set; }
         private void ReceiveResponse()
         {
             var buffer = new byte[2048];
@@ -54,30 +55,68 @@ namespace TicTacToeClientSide1225
             var data = new byte[received];
             Array.Copy(buffer, data, received);
             string text = Encoding.ASCII.GetString(data);
-            IntegrateToView(text);
+            if (text == "True")
+            {
+                MessageBox.Show("Sira x de di");
+                //IsEnable = true;
+                //b1.IsEnabled = IsEnable;
+                //b2.IsEnabled = IsEnable;
+                //b3.IsEnabled = IsEnable;
+                //b4.IsEnabled = IsEnable;
+                //b5.IsEnabled = IsEnable;
+                //b6.IsEnabled = IsEnable;
+                //b7.IsEnabled = IsEnable;
+                //b8.IsEnabled = IsEnable;
+                //b9.IsEnabled = IsEnable;
+            }
+            else if (text == "False")
+            {
+                MessageBox.Show("Sira o de di");
+
+                //IsEnable = false;
+                //b1.IsEnabled = false;
+                //b2.IsEnabled = IsEnable;
+                //b3.IsEnabled = IsEnable;
+                //b4.IsEnabled = IsEnable;
+                //b5.IsEnabled = IsEnable;
+                //b6.IsEnabled = IsEnable;
+                //b7.IsEnabled = IsEnable;
+                //b8.IsEnabled = IsEnable;
+                //b9.IsEnabled = IsEnable;
+            }
+            else
+            {
+                IntegrateToView(text);
+            }
         }
 
         private void IntegrateToView(string text)
         {
-            App.Current.Dispatcher.Invoke(() =>
+            try
             {
-                var data = text.Split('\n');
-                var row1 = data[0].Split('\t');
-                var row2 = data[1].Split('\t');
-                var row3 = data[2].Split('\t');
+                App.Current.Dispatcher.Invoke(() =>
+                {
+                    var data = text.Split('\n');
+                    var row1 = data[0].Split('\t');
+                    var row2 = data[1].Split('\t');
+                    var row3 = data[2].Split('\t');
 
-                b1.Content = row1[0];
-                b2.Content = row1[1];
-                b3.Content = row1[2];
+                    b1.Content = row1[0];
+                    b2.Content = row1[1];
+                    b3.Content = row1[2];
 
-                b4.Content = row2[0];
-                b5.Content = row2[1];
-                b6.Content = row2[2];
+                    b4.Content = row2[0];
+                    b5.Content = row2[1];
+                    b6.Content = row2[2];
 
-                b7.Content = row3[0];
-                b8.Content = row3[1];
-                b9.Content = row3[2];
-            });
+                    b7.Content = row3[0];
+                    b8.Content = row3[1];
+                    b9.Content = row3[2];
+                });
+            }
+            catch (Exception)
+            {
+            }
         }
 
         private void ConnectToServer()
@@ -86,7 +125,7 @@ namespace TicTacToeClientSide1225
             {
                 try
                 {
-                    ClientSocket.Connect(IPAddress.Parse("10.2.27.3"), port);
+                    ClientSocket.Connect(IPAddress.Parse("10.1.18.3"), port);
                 }
                 catch (Exception)
                 {
@@ -95,31 +134,39 @@ namespace TicTacToeClientSide1225
 
             MessageBox.Show("Connected to game");
 
+
+
             var buffer = new byte[2048];
             int received = ClientSocket.Receive(buffer, SocketFlags.None);
             if (received == 0) return;
 
             var data = new byte[received];
             Array.Copy(buffer, data, received);
-
             string text = Encoding.ASCII.GetString(data);
-            var texts = text.Split(' ');
 
-            if (text.Contains("Start game"))
+            MessageBox.Show(text);
+
+            if (text == "O")
             {
                 MessageBox.Show("Start game");
+
+                this.Title = "Player : " + text;
+
+                this.player.Text = this.Title;
             }
 
-            try
-            {
-                this.Title = "Player : " + texts[2];
-                this.player.Text = this.Title;
-            }
-            catch (Exception)
-            {
-                this.Title = "Player : " + text;
-                this.player.Text = this.Title;
-            }
+
+
+
+
+            //try
+            //{
+            //    this.Title = "Player : " + texts[2];
+            //    this.player.Text = this.Title;
+            //}
+            //catch (Exception)
+            //{
+            //}
 
         }
 
