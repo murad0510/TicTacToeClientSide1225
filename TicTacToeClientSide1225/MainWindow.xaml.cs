@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -84,10 +85,10 @@ namespace TicTacToeClientSide1225
                 //b8.IsEnabled = IsEnable;
                 //b9.IsEnabled = IsEnable;
             }
-            else if (text != "salam")
-            {
-                IntegrateToView(text);
-            }
+            //else if (text != "O")
+            //{
+            IntegrateToView(text);
+            //}
         }
 
         private void IntegrateToView(string text)
@@ -118,7 +119,7 @@ namespace TicTacToeClientSide1225
             {
             }
         }
-
+        public static string Text { get; set; }
         private void ConnectToServer()
         {
             while (!ClientSocket.Connected)
@@ -134,8 +135,8 @@ namespace TicTacToeClientSide1225
 
             MessageBox.Show("Connected to game");
 
-
-
+            //Task.Run(() =>
+            //{
             var buffer = new byte[2048];
             int received = ClientSocket.Receive(buffer);
             if (received == 0) return;
@@ -146,12 +147,20 @@ namespace TicTacToeClientSide1225
 
             MessageBox.Show(text);
 
-            if (text == "salam")
+            Task.Run(() =>
             {
-                MessageBox.Show("Start game");
-            }
+                if (text == "O")
+                {
+                    MessageBox.Show("Start game");
+                }
+            });
 
-            this.Title = "Player : " + text;
+            Text = text;
+
+
+            //});
+
+            this.Title = "Player : " + Text;
 
             this.player.Text = this.Title;
 
