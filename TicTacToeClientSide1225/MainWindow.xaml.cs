@@ -85,10 +85,8 @@ namespace TicTacToeClientSide1225
                 //b8.IsEnabled = IsEnable;
                 //b9.IsEnabled = IsEnable;
             }
-            //else if (text != "O")
-            //{
+
             IntegrateToView(text);
-            //}
         }
 
         private void IntegrateToView(string text)
@@ -117,6 +115,7 @@ namespace TicTacToeClientSide1225
             }
             catch (Exception)
             {
+                MessageBox.Show("Start game");
             }
         }
         public static string Text { get; set; }
