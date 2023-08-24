@@ -1,0 +1,16 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style x:Key="ButtonPressStyle"
+               TargetType="Button">
+        <Style.Triggers>
+            <Trigger Property="IsPressed"
+                         Value="True">
+                <Setter Property="Foreground">
+                    <Setter.Value>
+                        Red
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+</ResourceDictionary>

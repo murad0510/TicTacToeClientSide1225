@@ -5,39 +5,69 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TicTacToeClientSide1225"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="490" Width="800" ResizeMode="NoResize">
     <Grid>
+        <Canvas>
+            <TextBlock Background="Black" Width="3" Height="325" Canvas.Left="550" Canvas.Top="192">
+                <TextBlock.RenderTransform>
+                    <RotateTransform Angle="90"/>
+                </TextBlock.RenderTransform>
+            </TextBlock>
+
+            <TextBlock Background="Black" Width="3" Height="325" Canvas.Left="550" Canvas.Top="302">
+                <TextBlock.RenderTransform>
+                    <RotateTransform Angle="90"/>
+                </TextBlock.RenderTransform>
+            </TextBlock>
+
+
+
+            <TextBlock Background="Black" Width="3" Height="318" Canvas.Left="436" Canvas.Top="90"></TextBlock>
+
+            <TextBlock Background="Black" Width="3" Height="318" Canvas.Left="326" Canvas.Top="90"></TextBlock>
+
+        </Canvas>
         <StackPanel>
             <TextBlock FontSize="30" Name="player"></TextBlock>
+
             <Button Name="Connect" Click="Connect_Click" FontSize="30">Connect to Server</Button>
-            <WrapPanel Width="350">
-                <Button Name="b1" FontSize="40" Margin="5" Height="100" Width="100"
+            <WrapPanel Width="350" Height="332">
+                <Button x:Name="b1" Style="{StaticResource ButtonPressStyle}" FontSize="40" BorderThickness="0" Margin="5" Height="100" Width="100"
                         Click="b1_Click"
-                        >1</Button>
-                <Button Name="b2" FontSize="40" Margin="5" Height="100" Width="100"
+                        Content="1"
+                        />
+                <Button x:Name="b2" FontSize="40" BorderThickness="0" Margin="5" Height="100" Width="100"
                         Click="b1_Click"
-                        >2</Button>
-                <Button Name="b3" FontSize="40" Margin="5" Height="100" Width="100"
+                        Content="2"
+                        />
+                <Button x:Name="b3" FontSize="40" BorderThickness="0" Margin="5" Height="100" Width="100"
                         Click="b1_Click"
-                        >3</Button>
-                <Button Name="b4" FontSize="40" Margin="5" Height="100" Width="100"
+                        Content="3"
+                        />
+                <Button x:Name="b4" FontSize="40" BorderThickness="0" Margin="5" Height="100" Width="100"
                         Click="b1_Click"
-                        >4</Button>
-                <Button Name="b5" FontSize="40" Margin="5" Height="100" Width="100"
+                        Content="4"
+                        />
+                <Button x:Name="b5" FontSize="40" BorderThickness="0" Margin="5" Height="100" Width="100"
                         Click="b1_Click"
-                        >5</Button>
-                <Button Name="b6" FontSize="40" Margin="5" Height="100" Width="100"
+                        Content="5"
+                        />
+                <Button x:Name="b6" FontSize="40" BorderThickness="0" Margin="5" Height="100" Width="100"
                         Click="b1_Click"
-                        >6</Button>
-                <Button Name="b7" FontSize="40" Margin="5" Height="100" Width="100"
+                        Content="6"
+                        />
+                <Button x:Name="b7" FontSize="40" BorderThickness="0" Margin="5" Height="100" Width="100"
                         Click="b1_Click"
-                        >7</Button>
-                <Button Name="b8" FontSize="40" Margin="5" Height="100" Width="100"
+                        Content="7"
+                        />
+                <Button x:Name="b8" FontSize="40" BorderThickness="0" Margin="5" Height="100" Width="100"
                         Click="b1_Click"
-                        >8</Button>
-                <Button Name="b9" FontSize="40" Margin="5" Height="100" Width="100"
+                        Content="8"
+                        />
+                <Button x:Name="b9" FontSize="40" BorderThickness="0" Margin="5" Height="100" Width="100"
                         Click="b1_Click"
-                        >9</Button>
+                        Content="9"
+                        />
             </WrapPanel>
         </StackPanel>
     </Grid>

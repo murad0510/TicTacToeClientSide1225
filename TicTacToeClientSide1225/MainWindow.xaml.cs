@@ -56,37 +56,48 @@ namespace TicTacToeClientSide1225
             var data = new byte[received];
             Array.Copy(buffer, data, received);
             string text = Encoding.ASCII.GetString(data);
-            if (text == "True")
+            App.Current.Dispatcher.Invoke(() =>
             {
-                MessageBox.Show("Sira x de di");
-                //IsEnable = true;
-                //b1.IsEnabled = IsEnable;
-                //b2.IsEnabled = IsEnable;
-                //b3.IsEnabled = IsEnable;
-                //b4.IsEnabled = IsEnable;
-                //b5.IsEnabled = IsEnable;
-                //b6.IsEnabled = IsEnable;
-                //b7.IsEnabled = IsEnable;
-                //b8.IsEnabled = IsEnable;
-                //b9.IsEnabled = IsEnable;
-            }
-            else if (text == "False")
-            {
-                MessageBox.Show("Sira o de di");
+                if (text == "True")
+                {
+                    //MessageBox.Show("Sira x de di");
 
-                //IsEnable = false;
-                //b1.IsEnabled = false;
-                //b2.IsEnabled = IsEnable;
-                //b3.IsEnabled = IsEnable;
-                //b4.IsEnabled = IsEnable;
-                //b5.IsEnabled = IsEnable;
-                //b6.IsEnabled = IsEnable;
-                //b7.IsEnabled = IsEnable;
-                //b8.IsEnabled = IsEnable;
-                //b9.IsEnabled = IsEnable;
-            }
+                    IsEnable = true;
+                    b1.IsEnabled = IsEnable;
+                    b2.IsEnabled = IsEnable;
+                    b3.IsEnabled = IsEnable;
+                    b4.IsEnabled = IsEnable;
+                    b5.IsEnabled = IsEnable;
+                    b6.IsEnabled = IsEnable;
+                    b7.IsEnabled = IsEnable;
+                    b8.IsEnabled = IsEnable;
+                    b9.IsEnabled = IsEnable;
+                }
+                else if (text == "False")
+                {
+                    //MessageBox.Show("Sira o de di");
 
+                    IsEnable = false;
+                    b1.IsEnabled = IsEnable;
+                    b2.IsEnabled = IsEnable;
+                    b3.IsEnabled = IsEnable;
+                    b4.IsEnabled = IsEnable;
+                    b5.IsEnabled = IsEnable;
+                    b6.IsEnabled = IsEnable;
+                    b7.IsEnabled = IsEnable;
+                    b8.IsEnabled = IsEnable;
+                    b9.IsEnabled = IsEnable;
+                }
+                if (text == "O")
+                {
+                    MessageBox.Show("Start game");
+                }
+            });
+
+            //if (text != "O" && text != "True" && text != "False")
+            //{
             IntegrateToView(text);
+            //}
         }
 
         private void IntegrateToView(string text)
@@ -115,7 +126,6 @@ namespace TicTacToeClientSide1225
             }
             catch (Exception)
             {
-                MessageBox.Show("Start game");
             }
         }
         public static string Text { get; set; }
@@ -125,7 +135,7 @@ namespace TicTacToeClientSide1225
             {
                 try
                 {
-                    ClientSocket.Connect(IPAddress.Parse("10.2.27.3"), port);
+                    ClientSocket.Connect(IPAddress.Parse("192.168.0.110"), port);
                 }
                 catch (Exception)
                 {
@@ -144,15 +154,14 @@ namespace TicTacToeClientSide1225
             Array.Copy(buffer, data, received);
             string text = Encoding.ASCII.GetString(data);
 
-            MessageBox.Show(text);
+            //MessageBox.Show(text);
 
-            Task.Run(() =>
+
+            if (text == "O")
             {
-                if (text == "O")
-                {
-                    MessageBox.Show("Start game");
-                }
-            });
+                MessageBox.Show("Start game");
+            }
+
 
             Text = text;
 
